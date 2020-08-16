@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>canvas</title>
+</head>
+<body>
+    <div style="position: absolute; left: 500px;top: 100px;">
+        <canvas id="canvas" width="800" height="800"></canvas>
+    </div>
+    
+    <script>
+        const canvas = document.getElementById('canvas')
+        const ctx = canvas.getContext('2d') // 获取canvas对象
+
+        // 1. 矩形
+        // ctx.fillStyle = "red" // 设置填充色
+        // ctx.fillRect(25, 25, 100, 100) // 绘制填充的矩形
+        // ctx.clearRect(45, 45, 60, 60) // 将该矩形区域清空
+        // ctx.strokeRect(50, 50, 50, 50) // 绘制空心矩形
+
+        // 2. 线条
+        // ctx.beginPath() // 新建一条绘制路径
+        // ctx.moveTo(75, 50) // 笔触移动到指定位置
+        // ctx.lineTo(100, 75) // 绘制到指定点
+        // ctx.lineTo(100, 25) 
+        // // ctx.fill() // 填充
+        // ctx.stroke() // 描边
+
+        //  3. 圆弧arc(x, y, radius, startAngle, endAngle, anticlockwise<true,逆时针,默认false>)
+        //     弧度 = (Math.PI/180) * 角度
+        // const sAngle = Math.PI / 180 * 90
+        // ctx.arc(25, 25, 5, sAngle, 0, true)
+        // ctx.stroke()
+        
+        // 4. 贝塞尔曲线 bezierCurveTo(cp1x, cp1y, cp2x, cp2y, x, y)
+        // 二次贝塞尔曲线quadraticCurveTo(cp1x, cp1y, x, y)<p1x,cp1y为一个控制点，x,y为结束点>
+        // ctx.beginPath()
+        // ctx.moveTo(50, 25)
+        // ctx.quadraticCurveTo(20, 25, 20, 62.5)
+        // ctx.stroke()
+        // 三次贝塞尔曲线
+        // ctx.moveTo(50, 25)
+        // ctx.bezierCurveTo(20, 25, 20, 65, 50, 90)
+        // ctx.moveTo(50, 25)
+        // ctx.bezierCurveTo(80, 25, 80, 65, 50, 90)
+        // ctx.stroke()
+
+        // 5. Path2D 
+        // 有点像konva的思想,new Path2D(m)是在创建一个新的画层，并复制m层中的元素，
+        // 通过ctx.stroke/ctx.fill先后顺序来控制层叠遮盖顺序
+        // let path1 = new Path2D()
+        // path1.rect(10, 10, 100,100)
+        // ctx.moveTo(500, 500)
+        // let path2 = new Path2D(path1)
+        // path2.moveTo(220, 60)
+        // path2.arc(170, 60, 50, 0, 2 * Math.PI)
+
+        // let path3 = new Path2D(path1)
+        // path3.moveTo(220, 60)
+        // path3.rect(170, 60, 200, 200)
+        // ctx.stroke(path2)
+        // ctx.fill(path3)
+
+        // 6. 设置颜色
+        // ctx.fillStyle = "orange" // 填充颜色
+        // ctx.strokeStyle  = "orange" // 边框绘制颜色
+        // ctx.globalAlpha = 0.2 // 设置透明度
+
+        // 7. 设置线性
+
+        // ①lineWidth线段宽度②lineCap线段端点样式
+        // ctx.lineWidth = 1 
+        // const lineCap = ['butt','round','square']
+
+        // // 创建路径
+        // ctx.strokeStyle = '#09f';
+        // ctx.beginPath();
+        // ctx.moveTo(10,10);
+        // ctx.lineTo(140,10);
+        // ctx.moveTo(10,140);
+        // ctx.lineTo(140,140);
+        // ctx.stroke();
+
+        // // 画线条
+        // ctx.strokeStyle = 'black';
+        // for (let i = 0; i < lineCap.length; i++){
+        //     ctx.lineWidth = 15
+        //     ctx.lineCap = lineCap[i]
+        //     ctx.beginPath()
+        //     ctx.moveTo(25 + i * 50, 10)
+        //     ctx.lineTo(25 + i * 50, 140)
+        //     ctx.stroke()
+        // }
+
+        // ③lineJoin两线段连接处样式
+        const lineJoin = ['round', 'bevel', 'miter'] // 圆角 | 平角 | 尖角
+        ctx.lineWidth = 10
+        for (var i = 0; i < lineJoin.length; i++) {
+            ctx.lineJoin = lineJoin[i]
+            ctx.beginPath()
+            ctx.moveTo(-5, 5 + i * 40)
+            ctx.lineTo(35, 45 + i * 40)
+            ctx.lineTo(75, 5 + i * 40)
+            ctx.lineTo(115, 45 + i * 40)
+            ctx.lineTo(155, 5 + i * 40)
+            ctx.stroke()
+        }
+
+    </script>
+</body>
+</html>

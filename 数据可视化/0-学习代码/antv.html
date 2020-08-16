@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>antv g2</title>
+    <script src="https://unpkg.com/@antv/g2plot@latest/dist/g2plot.js"></script>
+</head>
+<body>
+    <div id="g2-chart"></div>
+    <script>
+        const chartDom = document.getElementById('g2-chart')
+        const data = [
+            { name: '张1', age: 11 },
+            { name: '张2', age: 1 },
+            { name: '张3', age: 1 },
+            { name: '张4', age: 1 },
+            { name: '张5', age: 1 }
+        ]
+        const line = new G2Plot.Line(chartDom,{
+            title: { // 图标标题
+                visible: true,
+                text: 'g2测试'
+            },
+            description: { // 副标题
+                visible: true,
+                text: '这是一个副标题'
+            },
+            point: { // 折线交点样式
+                visible: true,
+                size: 5,
+                color: 'white',
+                style: {
+                    stroke: '#FE740C',
+                    lineWidth: 2,
+                    fillOpacity: 0.6,
+                }
+            },
+            label: { // 折线交点上方文字文本
+                visible: true,
+                type:'point', // point | line
+                offsetX: 6,
+                offsetY: 6,
+                style:{
+                    fill: 'rgba(0, 0, 0, 0.65)',
+                    stroke: 'red',
+                    lineWidth: 1,
+                }
+            },
+            data,
+            xField: 'name', // x轴绑定的字段
+            yField: 'age' // y轴绑定的字段
+        })
+        line.render()
+    </script>
+</body>
+</html>
